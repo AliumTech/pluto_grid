@@ -24,7 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   pluto_grid:
-    path: ../
+    git:
+      url: https://github.com/RamshaFarheen/pluto_grid.git
   pluto_grid_export:
     path: ../packages/pluto_grid_export
   faker: ^2.0.0
