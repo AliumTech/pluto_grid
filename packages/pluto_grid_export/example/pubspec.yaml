@@ -33,7 +33,9 @@ dependencies:
     git:
       url: https://github.com/RamshaFarheen/pluto_grid.git
   pluto_grid_export:
-    path: ../
+    git:
+      url: https://github.com/RamshaFarheen/pluto_grid.git
+      path: packages/pluto_grid_export
   file_saver: ^0.1.1
 
   # The following adds the Cupertino Icons font to your application.
