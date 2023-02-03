@@ -17,7 +17,7 @@ dependencies:
       url: https://github.com/RamshaFarheen/pluto_grid.git
   csv: ^5.0.1
   pdf: ^3.9.0
-  printing: ^5.10.1
+  printing: ^5.9.3
 
 dev_dependencies:
   flutter_test:
