@@ -209,6 +209,7 @@ class PlutoGridStyleConfig {
     this.cellColorGroupedRow,
     this.dragTargetColumnColor = const Color(0xFFDCF5FF),
     this.iconColor = Colors.black26,
+    this.unselectedCheckColor = Colors.black26,
     this.disabledIconColor = Colors.black12,
     this.menuBackgroundColor = Colors.white,
     this.gridBorderColor = const Color(0xFFA1A5AE),
@@ -249,62 +250,64 @@ class PlutoGridStyleConfig {
     this.filterHeaderIconColor,
   });
 
-  const PlutoGridStyleConfig.dark(
-      {this.enableGridBorderShadow = false,
-      this.enableColumnBorderVertical = true,
-      this.enableColumnBorderHorizontal = true,
-      this.enableCellBorderVertical = true,
-      this.enableCellBorderHorizontal = true,
-      this.enableRowColorAnimation = false,
-      this.gridBackgroundColor = const Color(0xFF111111),
-      this.rowColor = const Color(0xFF111111),
-      this.oddRowColor,
-      this.evenRowColor,
-      this.activatedColor = const Color(0xFF313131),
-      this.checkedColor = const Color(0x11202020),
-      this.cellColorInEditState = const Color(0xFF666666),
-      this.cellColorInReadOnlyState = const Color(0xFF222222),
-      this.cellColorGroupedRow,
-      this.dragTargetColumnColor = const Color(0xFF313131),
-      this.iconColor = Colors.white38,
-      this.disabledIconColor = Colors.white12,
-      this.menuBackgroundColor = const Color(0xFF414141),
-      this.gridBorderColor = const Color(0xFF666666),
-      this.borderColor = const Color(0xFF222222),
-      this.activatedBorderColor = const Color(0xFFFFFFFF),
-      this.inactivatedBorderColor = const Color(0xFF666666),
-      this.iconSize = 18,
-      this.rowHeight = PlutoGridSettings.rowHeight,
-      this.columnHeight = PlutoGridSettings.rowHeight,
-      this.columnFilterHeight = PlutoGridSettings.rowHeight,
-      this.defaultColumnTitlePadding = PlutoGridSettings.columnTitlePadding,
-      this.defaultColumnFilterPadding = PlutoGridSettings.columnFilterPadding,
-      this.defaultCellPadding = PlutoGridSettings.cellPadding,
-      this.columnTextStyle = const TextStyle(
-        color: Colors.white,
-        decoration: TextDecoration.none,
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-      ),
-      this.cellTextStyle = const TextStyle(
-        color: Colors.white,
-        fontSize: 14,
-      ),
-      this.columnContextIcon = Icons.dehaze,
-      this.columnResizeIcon = Icons.code_sharp,
-      this.columnAscendingIcon,
-      this.columnDescendingIcon,
-      this.rowGroupExpandedIcon = Icons.keyboard_arrow_down,
-      this.rowGroupCollapsedIcon = const IconData(
-        0xe355,
-        matchTextDirection: true,
-        fontFamily: 'MaterialIcons',
-      ),
-      this.rowGroupEmptyIcon = Icons.noise_control_off,
-      this.gridBorderRadius = BorderRadius.zero,
-      this.gridPopupBorderRadius = BorderRadius.zero,
-      this.filterHeaderColor,
-      this.filterHeaderIconColor});
+  const PlutoGridStyleConfig.dark({
+    this.enableGridBorderShadow = false,
+    this.enableColumnBorderVertical = true,
+    this.enableColumnBorderHorizontal = true,
+    this.enableCellBorderVertical = true,
+    this.enableCellBorderHorizontal = true,
+    this.enableRowColorAnimation = false,
+    this.gridBackgroundColor = const Color(0xFF111111),
+    this.rowColor = const Color(0xFF111111),
+    this.oddRowColor,
+    this.evenRowColor,
+    this.activatedColor = const Color(0xFF313131),
+    this.checkedColor = const Color(0x11202020),
+    this.cellColorInEditState = const Color(0xFF666666),
+    this.cellColorInReadOnlyState = const Color(0xFF222222),
+    this.cellColorGroupedRow,
+    this.dragTargetColumnColor = const Color(0xFF313131),
+    this.iconColor = Colors.white38,
+    this.unselectedCheckColor = Colors.white38,
+    this.disabledIconColor = Colors.white12,
+    this.menuBackgroundColor = const Color(0xFF414141),
+    this.gridBorderColor = const Color(0xFF666666),
+    this.borderColor = const Color(0xFF222222),
+    this.activatedBorderColor = const Color(0xFFFFFFFF),
+    this.inactivatedBorderColor = const Color(0xFF666666),
+    this.iconSize = 18,
+    this.rowHeight = PlutoGridSettings.rowHeight,
+    this.columnHeight = PlutoGridSettings.rowHeight,
+    this.columnFilterHeight = PlutoGridSettings.rowHeight,
+    this.defaultColumnTitlePadding = PlutoGridSettings.columnTitlePadding,
+    this.defaultColumnFilterPadding = PlutoGridSettings.columnFilterPadding,
+    this.defaultCellPadding = PlutoGridSettings.cellPadding,
+    this.columnTextStyle = const TextStyle(
+      color: Colors.white,
+      decoration: TextDecoration.none,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
+    this.cellTextStyle = const TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+    ),
+    this.columnContextIcon = Icons.dehaze,
+    this.columnResizeIcon = Icons.code_sharp,
+    this.columnAscendingIcon,
+    this.columnDescendingIcon,
+    this.rowGroupExpandedIcon = Icons.keyboard_arrow_down,
+    this.rowGroupCollapsedIcon = const IconData(
+      0xe355,
+      matchTextDirection: true,
+      fontFamily: 'MaterialIcons',
+    ),
+    this.rowGroupEmptyIcon = Icons.noise_control_off,
+    this.gridBorderRadius = BorderRadius.zero,
+    this.gridPopupBorderRadius = BorderRadius.zero,
+    this.filterHeaderColor,
+    this.filterHeaderIconColor,
+  });
 
   /// Enable borderShadow in [PlutoGrid].
   final bool enableGridBorderShadow;
@@ -365,6 +368,9 @@ class PlutoGridStyleConfig {
 
   /// Icon color. (column menu, cell of popup type, pagination plugin)
   final Color iconColor;
+
+  /// Unselected Check color for check box.
+  final Color unselectedCheckColor;
 
   /// Disabled icon color. (pagination plugin)
   final Color disabledIconColor;
