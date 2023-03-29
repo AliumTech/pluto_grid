@@ -534,13 +534,14 @@ class _ColumnTextWidgetState extends PlutoStateWithChange<_ColumnTextWidget> {
 
   List<InlineSpan> get _children => [
         if (widget.column.titleSpan != null) ...[
+          widget.column.titleSpan!,
+        ] else ...[
           if (widget.column.enableRowChecked)
             WidgetSpan(
               child: CheckboxAllSelectionWidget(
                 stateManager: widget.stateManager,
               ),
             ),
-          widget.column.titleSpan!,
         ],
         if (_isFilteredList)
           WidgetSpan(
