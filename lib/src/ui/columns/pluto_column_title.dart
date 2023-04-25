@@ -395,8 +395,6 @@ class _ColumnWidget extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: [
-                    if (column.enableRowChecked)
-                      CheckboxAllSelectionWidget(stateManager: stateManager),
                     Expanded(
                       child: _ColumnTextWidget(
                         column: column,
@@ -478,7 +476,7 @@ class CheckboxAllSelectionWidgetState
       handleOnChanged: _handleOnChanged,
       tristate: true,
       scale: 0.86,
-      unselectedColor: stateManager.configuration.style.iconColor,
+      unselectedColor: stateManager.configuration.style.unselectedCheckColor,
       activeColor: stateManager.configuration.style.activatedBorderColor,
       checkColor: stateManager.configuration.style.activatedColor,
     );
@@ -535,7 +533,16 @@ class _ColumnTextWidgetState extends PlutoStateWithChange<_ColumnTextWidget> {
       widget.column.titleSpan == null ? widget.column.title : null;
 
   List<InlineSpan> get _children => [
-        if (widget.column.titleSpan != null) widget.column.titleSpan!,
+        if (widget.column.titleSpan != null) ...[
+          widget.column.titleSpan!,
+        ] else ...[
+          if (widget.column.enableRowChecked)
+            WidgetSpan(
+              child: CheckboxAllSelectionWidget(
+                stateManager: widget.stateManager,
+              ),
+            ),
+        ],
         if (_isFilteredList)
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,

@@ -345,33 +345,74 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
     return _AnimatedOrNormalContainer(
       enable: widget.enableRowColorAnimation,
       decoration: _decoration,
+      row: widget.row,
       child: widget.child,
     );
   }
 }
 
-class _AnimatedOrNormalContainer extends StatelessWidget {
+class _AnimatedOrNormalContainer extends StatefulWidget {
   final bool enable;
 
   final Widget child;
 
   final BoxDecoration decoration;
 
+  final PlutoRow row;
+
   const _AnimatedOrNormalContainer({
     required this.enable,
     required this.child,
     required this.decoration,
+    required this.row,
     Key? key,
   }) : super(key: key);
 
   @override
+  State<_AnimatedOrNormalContainer> createState() =>
+      _AnimatedOrNormalContainerState();
+}
+
+class _AnimatedOrNormalContainerState
+    extends State<_AnimatedOrNormalContainer> {
+  late Color rowColor;
+
+  @override
+  void initState() {
+    if (widget.row.onHoverColor != null) rowColor = widget.row.backgroundColor!;
+    super.initState();
+  }
+
+  void onHover(PointerEvent details) {
+    if (widget.row.onHoverColor != null) {
+      setState(() {
+        rowColor = widget.row.onHoverColor!;
+      });
+    }
+  }
+
+  void onExit(PointerEvent details) {
+    if (widget.row.onHoverColor != null) {
+      setState(() {
+        rowColor = widget.row.backgroundColor!;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return enable
-        ? AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            decoration: decoration,
-            child: child,
+    return widget.enable
+        ? MouseRegion(
+            onHover: onHover,
+            onExit: onExit,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              decoration: widget.row.onHoverColor != null
+                  ? widget.decoration.copyWith(color: rowColor)
+                  : widget.decoration,
+              child: widget.child,
+            ),
           )
-        : DecoratedBox(decoration: decoration, child: child);
+        : DecoratedBox(decoration: widget.decoration, child: widget.child);
   }
 }

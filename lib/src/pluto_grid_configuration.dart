@@ -209,6 +209,7 @@ class PlutoGridStyleConfig {
     this.cellColorGroupedRow,
     this.dragTargetColumnColor = const Color(0xFFDCF5FF),
     this.iconColor = Colors.black26,
+    this.unselectedCheckColor = Colors.black26,
     this.disabledIconColor = Colors.black12,
     this.menuBackgroundColor = Colors.white,
     this.gridBorderColor = const Color(0xFFA1A5AE),
@@ -246,6 +247,8 @@ class PlutoGridStyleConfig {
     this.rowGroupEmptyIcon = Icons.noise_control_off,
     this.gridBorderRadius = BorderRadius.zero,
     this.gridPopupBorderRadius = BorderRadius.zero,
+    this.filterHeaderColor,
+    this.filterHeaderIconColor,
   });
 
   const PlutoGridStyleConfig.dark({
@@ -266,6 +269,7 @@ class PlutoGridStyleConfig {
     this.cellColorGroupedRow,
     this.dragTargetColumnColor = const Color(0xFF313131),
     this.iconColor = Colors.white38,
+    this.unselectedCheckColor = Colors.white38,
     this.disabledIconColor = Colors.white12,
     this.menuBackgroundColor = const Color(0xFF414141),
     this.gridBorderColor = const Color(0xFF666666),
@@ -303,6 +307,8 @@ class PlutoGridStyleConfig {
     this.rowGroupEmptyIcon = Icons.noise_control_off,
     this.gridBorderRadius = BorderRadius.zero,
     this.gridPopupBorderRadius = BorderRadius.zero,
+    this.filterHeaderColor,
+    this.filterHeaderIconColor,
   });
 
   /// Enable borderShadow in [PlutoGrid].
@@ -364,6 +370,9 @@ class PlutoGridStyleConfig {
 
   /// Icon color. (column menu, cell of popup type, pagination plugin)
   final Color iconColor;
+
+  /// Unselected Check color for check box.
+  final Color unselectedCheckColor;
 
   /// Disabled icon color. (pagination plugin)
   final Color disabledIconColor;
@@ -453,6 +462,12 @@ class PlutoGridStyleConfig {
   /// Apply border radius to popup opened inside [PlutoGrid].
   final BorderRadiusGeometry gridPopupBorderRadius;
 
+  /// Set color of filter popup header
+  final Color? filterHeaderColor;
+
+  /// Set color of filter popup header icon
+  final Color? filterHeaderIconColor;
+
   PlutoGridStyleConfig copyWith({
     bool? enableGridBorderShadow,
     bool? enableColumnBorderVertical,
@@ -495,70 +510,74 @@ class PlutoGridStyleConfig {
     IconData? rowGroupEmptyIcon,
     BorderRadiusGeometry? gridBorderRadius,
     BorderRadiusGeometry? gridPopupBorderRadius,
+    Color? filterHeaderColor,
+    Color? filterHeaderIconColor,
   }) {
     return PlutoGridStyleConfig(
-      enableGridBorderShadow:
-          enableGridBorderShadow ?? this.enableGridBorderShadow,
-      enableColumnBorderVertical:
-          enableColumnBorderVertical ?? this.enableColumnBorderVertical,
-      enableColumnBorderHorizontal:
-          enableColumnBorderHorizontal ?? this.enableColumnBorderHorizontal,
-      enableCellBorderVertical:
-          enableCellBorderVertical ?? this.enableCellBorderVertical,
-      enableCellBorderHorizontal:
-          enableCellBorderHorizontal ?? this.enableCellBorderHorizontal,
-      enableRowColorAnimation:
-          enableRowColorAnimation ?? this.enableRowColorAnimation,
-      gridBackgroundColor: gridBackgroundColor ?? this.gridBackgroundColor,
-      rowColor: rowColor ?? this.rowColor,
-      oddRowColor: oddRowColor == null ? this.oddRowColor : oddRowColor.value,
-      evenRowColor:
-          evenRowColor == null ? this.evenRowColor : evenRowColor.value,
-      activatedColor: activatedColor ?? this.activatedColor,
-      checkedColor: checkedColor ?? this.checkedColor,
-      cellColorInEditState: cellColorInEditState ?? this.cellColorInEditState,
-      cellColorInReadOnlyState:
-          cellColorInReadOnlyState ?? this.cellColorInReadOnlyState,
-      cellColorGroupedRow: cellColorGroupedRow == null
-          ? this.cellColorGroupedRow
-          : cellColorGroupedRow.value,
-      dragTargetColumnColor:
-          dragTargetColumnColor ?? this.dragTargetColumnColor,
-      iconColor: iconColor ?? this.iconColor,
-      disabledIconColor: disabledIconColor ?? this.disabledIconColor,
-      menuBackgroundColor: menuBackgroundColor ?? this.menuBackgroundColor,
-      gridBorderColor: gridBorderColor ?? this.gridBorderColor,
-      borderColor: borderColor ?? this.borderColor,
-      activatedBorderColor: activatedBorderColor ?? this.activatedBorderColor,
-      inactivatedBorderColor:
-          inactivatedBorderColor ?? this.inactivatedBorderColor,
-      iconSize: iconSize ?? this.iconSize,
-      rowHeight: rowHeight ?? this.rowHeight,
-      columnHeight: columnHeight ?? this.columnHeight,
-      columnFilterHeight: columnFilterHeight ?? this.columnFilterHeight,
-      defaultColumnTitlePadding:
-          defaultColumnTitlePadding ?? this.defaultColumnTitlePadding,
-      defaultColumnFilterPadding:
-          defaultColumnFilterPadding ?? this.defaultColumnFilterPadding,
-      defaultCellPadding: defaultCellPadding ?? this.defaultCellPadding,
-      columnTextStyle: columnTextStyle ?? this.columnTextStyle,
-      cellTextStyle: cellTextStyle ?? this.cellTextStyle,
-      columnContextIcon: columnContextIcon ?? this.columnContextIcon,
-      columnResizeIcon: columnResizeIcon ?? this.columnResizeIcon,
-      columnAscendingIcon: columnAscendingIcon == null
-          ? this.columnAscendingIcon
-          : columnAscendingIcon.value,
-      columnDescendingIcon: columnDescendingIcon == null
-          ? this.columnDescendingIcon
-          : columnDescendingIcon.value,
-      rowGroupExpandedIcon: rowGroupExpandedIcon ?? this.rowGroupExpandedIcon,
-      rowGroupCollapsedIcon:
-          rowGroupCollapsedIcon ?? this.rowGroupCollapsedIcon,
-      rowGroupEmptyIcon: rowGroupEmptyIcon ?? this.rowGroupEmptyIcon,
-      gridBorderRadius: gridBorderRadius ?? this.gridBorderRadius,
-      gridPopupBorderRadius:
-          gridPopupBorderRadius ?? this.gridPopupBorderRadius,
-    );
+        enableGridBorderShadow:
+            enableGridBorderShadow ?? this.enableGridBorderShadow,
+        enableColumnBorderVertical:
+            enableColumnBorderVertical ?? this.enableColumnBorderVertical,
+        enableColumnBorderHorizontal:
+            enableColumnBorderHorizontal ?? this.enableColumnBorderHorizontal,
+        enableCellBorderVertical:
+            enableCellBorderVertical ?? this.enableCellBorderVertical,
+        enableCellBorderHorizontal:
+            enableCellBorderHorizontal ?? this.enableCellBorderHorizontal,
+        enableRowColorAnimation:
+            enableRowColorAnimation ?? this.enableRowColorAnimation,
+        gridBackgroundColor: gridBackgroundColor ?? this.gridBackgroundColor,
+        rowColor: rowColor ?? this.rowColor,
+        oddRowColor: oddRowColor == null ? this.oddRowColor : oddRowColor.value,
+        evenRowColor:
+            evenRowColor == null ? this.evenRowColor : evenRowColor.value,
+        activatedColor: activatedColor ?? this.activatedColor,
+        checkedColor: checkedColor ?? this.checkedColor,
+        cellColorInEditState: cellColorInEditState ?? this.cellColorInEditState,
+        cellColorInReadOnlyState:
+            cellColorInReadOnlyState ?? this.cellColorInReadOnlyState,
+        cellColorGroupedRow: cellColorGroupedRow == null
+            ? this.cellColorGroupedRow
+            : cellColorGroupedRow.value,
+        dragTargetColumnColor:
+            dragTargetColumnColor ?? this.dragTargetColumnColor,
+        iconColor: iconColor ?? this.iconColor,
+        disabledIconColor: disabledIconColor ?? this.disabledIconColor,
+        menuBackgroundColor: menuBackgroundColor ?? this.menuBackgroundColor,
+        gridBorderColor: gridBorderColor ?? this.gridBorderColor,
+        borderColor: borderColor ?? this.borderColor,
+        activatedBorderColor: activatedBorderColor ?? this.activatedBorderColor,
+        inactivatedBorderColor:
+            inactivatedBorderColor ?? this.inactivatedBorderColor,
+        iconSize: iconSize ?? this.iconSize,
+        rowHeight: rowHeight ?? this.rowHeight,
+        columnHeight: columnHeight ?? this.columnHeight,
+        columnFilterHeight: columnFilterHeight ?? this.columnFilterHeight,
+        defaultColumnTitlePadding:
+            defaultColumnTitlePadding ?? this.defaultColumnTitlePadding,
+        defaultColumnFilterPadding:
+            defaultColumnFilterPadding ?? this.defaultColumnFilterPadding,
+        defaultCellPadding: defaultCellPadding ?? this.defaultCellPadding,
+        columnTextStyle: columnTextStyle ?? this.columnTextStyle,
+        cellTextStyle: cellTextStyle ?? this.cellTextStyle,
+        columnContextIcon: columnContextIcon ?? this.columnContextIcon,
+        columnResizeIcon: columnResizeIcon ?? this.columnResizeIcon,
+        columnAscendingIcon: columnAscendingIcon == null
+            ? this.columnAscendingIcon
+            : columnAscendingIcon.value,
+        columnDescendingIcon: columnDescendingIcon == null
+            ? this.columnDescendingIcon
+            : columnDescendingIcon.value,
+        rowGroupExpandedIcon: rowGroupExpandedIcon ?? this.rowGroupExpandedIcon,
+        rowGroupCollapsedIcon:
+            rowGroupCollapsedIcon ?? this.rowGroupCollapsedIcon,
+        rowGroupEmptyIcon: rowGroupEmptyIcon ?? this.rowGroupEmptyIcon,
+        gridBorderRadius: gridBorderRadius ?? this.gridBorderRadius,
+        gridPopupBorderRadius:
+            gridPopupBorderRadius ?? this.gridPopupBorderRadius,
+        filterHeaderColor: filterHeaderColor ?? this.filterHeaderColor,
+        filterHeaderIconColor:
+            filterHeaderIconColor ?? this.filterHeaderIconColor);
   }
 
   @override

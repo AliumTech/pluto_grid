@@ -7,6 +7,8 @@ class PlutoRow {
     PlutoRowType? type,
     this.sortIdx = 0,
     bool checked = false,
+    this.onHoverColor,
+    this.backgroundColor,
     Key? key,
   })  : type = type ?? PlutoRowTypeNormal.instance,
         _checked = checked,
@@ -16,6 +18,10 @@ class PlutoRow {
   final PlutoRowType type;
 
   final Key _key;
+
+  final Color? onHoverColor;
+
+  final Color? backgroundColor;
 
   Map<String, PlutoCell> cells;
 
