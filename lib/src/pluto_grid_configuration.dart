@@ -214,6 +214,7 @@ class PlutoGridStyleConfig {
     this.gridBorderColor = const Color(0xFFA1A5AE),
     this.borderColor = const Color(0xFFDDE2EB),
     this.activatedBorderColor = Colors.lightBlue,
+    this.dragIconColor = Colors.lightBlue,
     this.inactivatedBorderColor = const Color(0xFFC4C7CC),
     this.iconSize = 18,
     this.rowHeight = PlutoGridSettings.rowHeight,
@@ -272,6 +273,7 @@ class PlutoGridStyleConfig {
     this.activatedBorderColor = const Color(0xFFFFFFFF),
     this.inactivatedBorderColor = const Color(0xFF666666),
     this.iconSize = 18,
+    this.dragIconColor = const Color(0xFFFFFFFF),
     this.rowHeight = PlutoGridSettings.rowHeight,
     this.columnHeight = PlutoGridSettings.rowHeight,
     this.columnFilterHeight = PlutoGridSettings.rowHeight,
@@ -381,6 +383,9 @@ class PlutoGridStyleConfig {
   /// Border color set when widgets such as [PlutoRow] and [PlutoCell]
   /// receive focus or are currently selected.
   final Color activatedBorderColor;
+
+  /// Drag Icon Color
+  final Color dragIconColor;
 
   /// Border color set when widgets such as [PlutoRow] and [PlutoCell] lose focus.
   final Color inactivatedBorderColor;

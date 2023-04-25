@@ -174,7 +174,7 @@ class _PlutoDefaultCellState extends PlutoStateWithChange<PlutoDefaultCell> {
           dragIcon: Icon(
             Icons.drag_indicator,
             size: style.iconSize,
-            color: style.iconColor,
+            color: style.dragIconColor,
           ),
         ),
       if (widget.column.enableRowChecked)
