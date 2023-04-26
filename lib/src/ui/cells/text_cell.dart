@@ -241,6 +241,9 @@ mixin TextCellState<T extends TextCell> on State<T> implements TextFieldProps {
       onTap: _handleOnTap,
       style: widget.stateManager.configuration.style.cellTextStyle,
       decoration: const InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+        ),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
         ),
