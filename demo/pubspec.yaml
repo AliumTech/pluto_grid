@@ -25,18 +25,9 @@ dependencies:
     sdk: flutter
   pluto_grid:
     path: ../
-#  faker: ^2.0.0
-#  url_launcher: ^6.1.6
-#  font_awesome_flutter: ^10.2.1
-#    git:
-#      url: https://github.com/RamshaFarheen/pluto_grid.git
-#  pluto_grid_export:
-#    git:
-#      url: https://github.com/RamshaFarheen/pluto_grid.git
-#      path: packages/pluto_grid_export
   faker: ^2.1.0
-  url_launcher: ^6.1.11
-  font_awesome_flutter: ^10.4.0
+  url_launcher: ^6.1.12
+  font_awesome_flutter: ^10.5.0
   rainbow_color: ^2.0.1
   pluto_menu_bar: ^3.0.1
 
@@ -47,7 +38,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: ^2.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

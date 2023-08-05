@@ -13,12 +13,11 @@ dependencies:
   flutter:
     sdk: flutter
   pluto_grid:
-    git:
-      url: https://github.com/RamshaFarheen/pluto_grid.git
+    path: ../..
   csv: ^5.0.2
-  pdf: ^3.10.2
-  printing: ^5.10.4
-  file_saver: ^0.2.2
+  pdf: ^3.10.4
+  printing: ^5.11.0
+  file_saver: ^0.2.7
 
 
 dev_dependencies:

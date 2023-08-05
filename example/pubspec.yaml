@@ -30,8 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   pluto_grid:
-    git:
-      url: https://github.com/RamshaFarheen/pluto_grid.git
+    path: ../
 
 
   # The following adds the Cupertino Icons font to your application.

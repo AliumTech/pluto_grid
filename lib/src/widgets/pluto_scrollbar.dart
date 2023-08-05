@@ -501,8 +501,6 @@ class PlutoGridCupertinoScrollbarState extends State<PlutoScrollbar>
             axisDirection: widget.verticalController?.position.axisDirection ??
                 AxisDirection.down,
             devicePixelRatio: 1.0,
-            // devicePixelRatio:
-            //     widget.verticalController!.position.devicePixelRatio,
           );
         }
         break;
@@ -523,8 +521,6 @@ class PlutoGridCupertinoScrollbarState extends State<PlutoScrollbar>
                 widget.horizontalController?.position.axisDirection ??
                     AxisDirection.right,
             devicePixelRatio: 1.0,
-            // devicePixelRatio:
-            //     widget.verticalController!.position.devicePixelRatio,
           );
         }
         break;
@@ -1390,15 +1386,16 @@ class _ThumbPressGestureRecognizer extends LongPressGestureRecognizer {
   _ThumbPressGestureRecognizer({
     double? postAcceptSlopTolerance,
     Set<PointerDeviceKind>? supportedDevices,
-    required Object debugOwner,
     required GlobalKey customPaintKey,
+    required Object debugOwner,
+    required Duration duration,
     this.onlyDraggingThumb = false,
   })  : _customPaintKey = customPaintKey,
         super(
           postAcceptSlopTolerance: postAcceptSlopTolerance,
           supportedDevices: supportedDevices,
           debugOwner: debugOwner,
-          duration: const Duration(milliseconds: 100),
+          duration: duration,
         );
 
   final GlobalKey _customPaintKey;
