@@ -99,9 +99,11 @@ mixin FilteringRowState implements IPlutoGridState {
   void setFilterRows(List<PlutoRow> rows) {
     _state._filterRows = rows
         .where(
-          (element) => element.cells[FilterHelper.filterFieldValue]!.value
-              .toString()
-              .isNotEmpty,
+          (element) =>
+              element.cells[FilterHelper.filterFieldValue]?.value
+                  .toString()
+                  .isNotEmpty ??
+              false,
         )
         .toList();
   }
@@ -111,7 +113,7 @@ mixin FilteringRowState implements IPlutoGridState {
     return filterRows
         .where(
           (element) =>
-              element.cells[FilterHelper.filterFieldColumn]!.value ==
+              element.cells[FilterHelper.filterFieldColumn]?.value ==
               columnField,
         )
         .toList();
@@ -136,7 +138,7 @@ mixin FilteringRowState implements IPlutoGridState {
     filterRows.removeWhere(
       (filterRow) {
         return columnFields.contains(
-          filterRow.cells[FilterHelper.filterFieldColumn]!.value,
+          filterRow.cells[FilterHelper.filterFieldColumn]?.value,
         );
       },
     );
@@ -179,7 +181,7 @@ mixin FilteringRowState implements IPlutoGridState {
           filterState!.appendRows([FilterHelper.createFilterRow()]);
         },
         handleApplyFilter: (filterState) {
-          setFilterWithFilterRows(filterState!.rows);
+          setFilterWithFilterRows(filterState?.rows ?? []);
         },
         columns: columns,
         filterRows: rows,
