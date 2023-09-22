@@ -171,6 +171,7 @@ class PlutoPaginationState extends _PlutoPaginationStateWithChange {
   }
 
   TextStyle _getNumberTextStyle(bool isCurrentIndex) {
+    // Icon Color updated to filterHeaderIconColor first then iconColor
     return TextStyle(
       fontSize:
           isCurrentIndex ? stateManager.configuration.style.iconSize : null,
