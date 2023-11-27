@@ -100,6 +100,7 @@ class PlutoBodyRowsState extends PlutoStateWithChange<PlutoBodyRows> {
             controller: _verticalScroll,
             scrollDirection: Axis.vertical,
             physics: const ClampingScrollPhysics(),
+            padding: EdgeInsets.zero,
             itemCount: _rows.length,
             itemExtent: stateManager.rowTotalHeight,
             addRepaintBoundaries: false,
