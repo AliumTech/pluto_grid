@@ -57,6 +57,7 @@ class PlutoLeftFrozenRowsState
       controller: _scroll,
       scrollDirection: Axis.vertical,
       physics: const ClampingScrollPhysics(),
+      padding: EdgeInsets.zero,
       itemCount: _rows.length,
       itemExtent: stateManager.rowTotalHeight,
       itemBuilder: (ctx, i) {
