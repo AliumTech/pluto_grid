@@ -245,6 +245,7 @@ class PlutoGridStyleConfig {
       fontFamily: 'MaterialIcons',
     ),
     this.rowGroupEmptyIcon = Icons.noise_control_off,
+    this.rowGroupIconColor,
     this.gridBorderRadius = BorderRadius.zero,
     this.gridPopupBorderRadius = BorderRadius.zero,
     this.filterHeaderColor,
@@ -305,6 +306,7 @@ class PlutoGridStyleConfig {
       fontFamily: 'MaterialIcons',
     ),
     this.rowGroupEmptyIcon = Icons.noise_control_off,
+    this.rowGroupIconColor,
     this.gridBorderRadius = BorderRadius.zero,
     this.gridPopupBorderRadius = BorderRadius.zero,
     this.filterHeaderColor,
@@ -456,6 +458,9 @@ class PlutoGridStyleConfig {
   /// Icon when RowGroup is empty.
   final IconData rowGroupEmptyIcon;
 
+  /// Icon Color of RowGroup .
+  final Color? rowGroupIconColor;
+
   /// Apply the border radius of [PlutoGrid].
   final BorderRadiusGeometry gridBorderRadius;
 
@@ -508,6 +513,7 @@ class PlutoGridStyleConfig {
     IconData? rowGroupExpandedIcon,
     IconData? rowGroupCollapsedIcon,
     IconData? rowGroupEmptyIcon,
+    Color? rowGroupIconColor,
     BorderRadiusGeometry? gridBorderRadius,
     BorderRadiusGeometry? gridPopupBorderRadius,
     Color? filterHeaderColor,
@@ -572,6 +578,7 @@ class PlutoGridStyleConfig {
         rowGroupCollapsedIcon:
             rowGroupCollapsedIcon ?? this.rowGroupCollapsedIcon,
         rowGroupEmptyIcon: rowGroupEmptyIcon ?? this.rowGroupEmptyIcon,
+        rowGroupIconColor: rowGroupIconColor ?? this.rowGroupIconColor,
         gridBorderRadius: gridBorderRadius ?? this.gridBorderRadius,
         gridPopupBorderRadius:
             gridPopupBorderRadius ?? this.gridPopupBorderRadius,
