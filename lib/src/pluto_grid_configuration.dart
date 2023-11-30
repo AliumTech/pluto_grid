@@ -200,6 +200,7 @@ class PlutoGridStyleConfig {
     this.enableRowColorAnimation = false,
     this.gridBackgroundColor = Colors.white,
     this.rowColor = Colors.white,
+    this.onHoverRowColor,
     this.oddRowColor,
     this.evenRowColor,
     this.activatedColor = const Color(0xFFDCF5FF),
@@ -261,6 +262,7 @@ class PlutoGridStyleConfig {
     this.enableRowColorAnimation = false,
     this.gridBackgroundColor = const Color(0xFF111111),
     this.rowColor = const Color(0xFF111111),
+    this.onHoverRowColor,
     this.oddRowColor,
     this.evenRowColor,
     this.activatedColor = const Color(0xFF313131),
@@ -338,6 +340,9 @@ class PlutoGridStyleConfig {
   ///
   /// If [PlutoGrid.rowColorCallback] is set, rowColorCallback takes precedence.
   final Color rowColor;
+
+  /// on Hover row background color
+  final Color? onHoverRowColor;
 
   /// Background color for odd rows
   ///
@@ -482,6 +487,7 @@ class PlutoGridStyleConfig {
     bool? enableRowColorAnimation,
     Color? gridBackgroundColor,
     Color? rowColor,
+    Color? onHoverRowColor,
     PlutoOptional<Color?>? oddRowColor,
     PlutoOptional<Color?>? evenRowColor,
     Color? activatedColor,
@@ -534,6 +540,7 @@ class PlutoGridStyleConfig {
             enableRowColorAnimation ?? this.enableRowColorAnimation,
         gridBackgroundColor: gridBackgroundColor ?? this.gridBackgroundColor,
         rowColor: rowColor ?? this.rowColor,
+        onHoverRowColor: onHoverRowColor ?? this.onHoverRowColor,
         oddRowColor: oddRowColor == null ? this.oddRowColor : oddRowColor.value,
         evenRowColor:
             evenRowColor == null ? this.evenRowColor : evenRowColor.value,
@@ -601,6 +608,7 @@ class PlutoGridStyleConfig {
             enableRowColorAnimation == other.enableRowColorAnimation &&
             gridBackgroundColor == other.gridBackgroundColor &&
             rowColor == other.rowColor &&
+            onHoverRowColor == other.onHoverRowColor &&
             oddRowColor == other.oddRowColor &&
             evenRowColor == other.evenRowColor &&
             activatedColor == other.activatedColor &&
@@ -609,6 +617,7 @@ class PlutoGridStyleConfig {
             cellColorInReadOnlyState == other.cellColorInReadOnlyState &&
             cellColorGroupedRow == other.cellColorGroupedRow &&
             dragTargetColumnColor == other.dragTargetColumnColor &&
+            dragIconColor == other.dragIconColor &&
             iconColor == other.iconColor &&
             disabledIconColor == other.disabledIconColor &&
             menuBackgroundColor == other.menuBackgroundColor &&
@@ -632,6 +641,7 @@ class PlutoGridStyleConfig {
             rowGroupExpandedIcon == other.rowGroupExpandedIcon &&
             rowGroupCollapsedIcon == other.rowGroupCollapsedIcon &&
             rowGroupEmptyIcon == other.rowGroupEmptyIcon &&
+            rowGroupIconColor == other.rowGroupIconColor &&
             gridBorderRadius == other.gridBorderRadius &&
             gridPopupBorderRadius == other.gridPopupBorderRadius;
   }
@@ -646,6 +656,7 @@ class PlutoGridStyleConfig {
         enableRowColorAnimation,
         gridBackgroundColor,
         rowColor,
+        onHoverRowColor,
         oddRowColor,
         evenRowColor,
         activatedColor,
@@ -654,6 +665,7 @@ class PlutoGridStyleConfig {
         cellColorInReadOnlyState,
         cellColorGroupedRow,
         dragTargetColumnColor,
+        dragIconColor,
         iconColor,
         disabledIconColor,
         menuBackgroundColor,
@@ -676,6 +688,7 @@ class PlutoGridStyleConfig {
         columnDescendingIcon,
         rowGroupExpandedIcon,
         rowGroupCollapsedIcon,
+        rowGroupIconColor,
         rowGroupEmptyIcon,
         gridBorderRadius,
         gridPopupBorderRadius,

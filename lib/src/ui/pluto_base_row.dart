@@ -344,6 +344,7 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
 
     return _AnimatedOrNormalContainer(
       enable: widget.enableRowColorAnimation,
+      style: stateManager.configuration.style,
       decoration: _decoration,
       row: widget.row,
       child: widget.child,
@@ -360,11 +361,13 @@ class _AnimatedOrNormalContainer extends StatefulWidget {
 
   final PlutoRow row;
 
+  final PlutoGridStyleConfig style;
   const _AnimatedOrNormalContainer({
     required this.enable,
     required this.child,
     required this.decoration,
     required this.row,
+    required this.style,
     Key? key,
   }) : super(key: key);
 
@@ -375,28 +378,24 @@ class _AnimatedOrNormalContainer extends StatefulWidget {
 
 class _AnimatedOrNormalContainerState
     extends State<_AnimatedOrNormalContainer> {
-  late Color rowColor;
+  late Color? rowColor;
 
   @override
   void initState() {
-    if (widget.row.onHoverColor != null) rowColor = widget.row.backgroundColor!;
+    rowColor = widget.row.backgroundColor ?? widget.decoration.color;
     super.initState();
   }
 
   void onHover(PointerEvent details) {
-    if (widget.row.onHoverColor != null) {
-      setState(() {
-        rowColor = widget.row.onHoverColor!;
-      });
-    }
+    setState(() {
+      rowColor = widget.row.onHoverColor ?? widget.style.onHoverRowColor;
+    });
   }
 
   void onExit(PointerEvent details) {
-    if (widget.row.onHoverColor != null) {
-      setState(() {
-        rowColor = widget.row.backgroundColor!;
-      });
-    }
+    setState(() {
+      rowColor = widget.row.backgroundColor ?? widget.decoration.color;
+    });
   }
 
   @override
@@ -407,7 +406,7 @@ class _AnimatedOrNormalContainerState
             onExit: onExit,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
-              decoration: widget.row.onHoverColor != null
+              decoration: rowColor != null
                   ? widget.decoration.copyWith(color: rowColor)
                   : widget.decoration,
               child: widget.child,
