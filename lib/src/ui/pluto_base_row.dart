@@ -344,85 +344,120 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
 
     return _AnimatedOrNormalContainer(
       enable: widget.enableRowColorAnimation,
-      style: stateManager.configuration.style,
       decoration: _decoration,
-      row: widget.row,
       child: widget.child,
     );
   }
 }
 
-class _AnimatedOrNormalContainer extends StatefulWidget {
+class _AnimatedOrNormalContainer extends StatelessWidget {
   final bool enable;
 
   final Widget child;
 
   final BoxDecoration decoration;
 
-  final PlutoRow row;
-
-  final PlutoGridStyleConfig style;
   const _AnimatedOrNormalContainer({
     required this.enable,
     required this.child,
     required this.decoration,
-    required this.row,
-    required this.style,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<_AnimatedOrNormalContainer> createState() =>
-      _AnimatedOrNormalContainerState();
-}
-
-class _AnimatedOrNormalContainerState
-    extends State<_AnimatedOrNormalContainer> {
-  late Color? rowColor;
-
-  @override
-  void initState() {
-    rowColor = widget.row.backgroundColor ?? widget.decoration.color;
-    super.initState();
-  }
-
-  void onHover(PointerEvent details) {
-    setState(() {
-      rowColor = widget.row.onHoverColor ?? widget.style.onHoverRowColor;
-    });
-  }
-
-  void onExit(PointerEvent details) {
-    setState(() {
-      rowColor = widget.row.backgroundColor ?? widget.decoration.color;
-    });
-  }
-
-  bool get showMouseRegion =>
-      widget.style.onHoverRowColor == null && widget.row.onHoverColor == null;
-
-  @override
   Widget build(BuildContext context) {
-    Widget mouseRegion = showMouseRegion
+    return enable
         ? AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            decoration: widget.decoration,
-            child: widget.child,
+            decoration: decoration,
+            child: child,
           )
-        : MouseRegion(
-            onHover: onHover,
-            onExit: onExit,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              decoration: rowColor != null
-                  ? widget.decoration.copyWith(color: rowColor)
-                  : widget.decoration,
-              child: widget.child,
-            ),
-          );
-
-    return widget.enable
-        ? mouseRegion
-        : DecoratedBox(decoration: widget.decoration, child: widget.child);
+        : DecoratedBox(decoration: decoration, child: child);
   }
 }
+
+//     return _AnimatedOrNormalContainer(
+//       enable: widget.enableRowColorAnimation,
+//       style: stateManager.configuration.style,
+//       decoration: _decoration,
+//       row: widget.row,
+//       child: widget.child,
+//     );
+//   }
+// }
+//
+// class _AnimatedOrNormalContainer extends StatefulWidget {
+//   final bool enable;
+//
+//   final Widget child;
+//
+//   final BoxDecoration decoration;
+//
+//   final PlutoRow row;
+//
+//   final PlutoGridStyleConfig style;
+//
+//   const _AnimatedOrNormalContainer({
+//     required this.enable,
+//     required this.child,
+//     required this.decoration,
+//     required this.row,
+//     required this.style,
+//     Key? key,
+//   }) : super(key: key);
+//
+//   @override
+//   State<_AnimatedOrNormalContainer> createState() =>
+//       _AnimatedOrNormalContainerState();
+// }
+//
+// class _AnimatedOrNormalContainerState
+//     extends State<_AnimatedOrNormalContainer> {
+//   late Color? rowColor;
+//
+//   @override
+//   void initState() {
+//     rowColor = widget.row.backgroundColor ?? widget.decoration.color;
+//     super.initState();
+//   }
+//
+//   void onHover(PointerEvent details) {
+//     setState(() {
+//       rowColor = widget.row.onHoverColor ?? widget.style.onHoverRowColor;
+//     });
+//   }
+//
+//   void onExit(PointerEvent details) {
+//     setState(() {
+//       rowColor = widget.row.backgroundColor ?? widget.decoration.color;
+//     });
+//   }
+//
+//   bool get showMouseRegion =>
+//       widget.style.onHoverRowColor == null || widget.row.onHoverColor == null;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     Widget mouseRegion = showMouseRegion
+//         ? MouseRegion(
+//             onHover: onHover,
+//             onExit: onExit,
+//             child: AnimatedContainer(
+//               duration: const Duration(milliseconds: 300),
+//               decoration: rowColor != null
+//                   ? widget.decoration.copyWith(color: rowColor)
+//                   : widget.decoration,
+//               child: widget.child,
+//             ),
+//           )
+//         : AnimatedContainer(
+//             duration: const Duration(milliseconds: 300),
+//             decoration: widget.decoration,
+//             child: widget.child,
+//           );
+//
+//     return widget.enable
+//         ? mouseRegion
+//         : DecoratedBox(decoration: widget.decoration, child: widget.child);
+//   }
+// }
