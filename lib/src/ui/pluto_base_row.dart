@@ -398,10 +398,18 @@ class _AnimatedOrNormalContainerState
     });
   }
 
+  bool get showMouseRegion =>
+      widget.style.onHoverRowColor == null && widget.row.onHoverColor == null;
+
   @override
   Widget build(BuildContext context) {
-    return widget.enable
-        ? MouseRegion(
+    Widget mouseRegion = showMouseRegion
+        ? AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            decoration: widget.decoration,
+            child: widget.child,
+          )
+        : MouseRegion(
             onHover: onHover,
             onExit: onExit,
             child: AnimatedContainer(
@@ -411,7 +419,10 @@ class _AnimatedOrNormalContainerState
                   : widget.decoration,
               child: widget.child,
             ),
-          )
+          );
+
+    return widget.enable
+        ? mouseRegion
         : DecoratedBox(decoration: widget.decoration, child: widget.child);
   }
 }
