@@ -209,14 +209,14 @@ class PlutoGridStyleConfig {
     this.cellColorInReadOnlyState = const Color(0xFFDBDBDC),
     this.cellColorGroupedRow,
     this.dragTargetColumnColor = const Color(0xFFDCF5FF),
+    this.dragIconColor = Colors.lightBlue,
     this.iconColor = Colors.black26,
-    this.unselectedCheckColor = Colors.black26,
     this.disabledIconColor = Colors.black12,
+    this.unselectedCheckColor = Colors.black26,
     this.menuBackgroundColor = Colors.white,
     this.gridBorderColor = const Color(0xFFA1A5AE),
     this.borderColor = const Color(0xFFDDE2EB),
     this.activatedBorderColor = Colors.lightBlue,
-    this.dragIconColor = Colors.lightBlue,
     this.inactivatedBorderColor = const Color(0xFFC4C7CC),
     this.iconSize = 18,
     this.rowHeight = PlutoGridSettings.rowHeight,
@@ -496,8 +496,10 @@ class PlutoGridStyleConfig {
     Color? cellColorInReadOnlyState,
     PlutoOptional<Color?>? cellColorGroupedRow,
     Color? dragTargetColumnColor,
+    Color? dragIconColor,
     Color? iconColor,
     Color? disabledIconColor,
+    Color? unselectedCheckColor,
     Color? menuBackgroundColor,
     Color? gridBorderColor,
     Color? borderColor,
@@ -554,8 +556,10 @@ class PlutoGridStyleConfig {
             : cellColorGroupedRow.value,
         dragTargetColumnColor:
             dragTargetColumnColor ?? this.dragTargetColumnColor,
+        dragIconColor: dragIconColor ?? this.dragIconColor,
         iconColor: iconColor ?? this.iconColor,
         disabledIconColor: disabledIconColor ?? this.disabledIconColor,
+        unselectedCheckColor: unselectedCheckColor ?? this.unselectedCheckColor,
         menuBackgroundColor: menuBackgroundColor ?? this.menuBackgroundColor,
         gridBorderColor: gridBorderColor ?? this.gridBorderColor,
         borderColor: borderColor ?? this.borderColor,
@@ -620,6 +624,7 @@ class PlutoGridStyleConfig {
             dragIconColor == other.dragIconColor &&
             iconColor == other.iconColor &&
             disabledIconColor == other.disabledIconColor &&
+            unselectedCheckColor == other.unselectedCheckColor &&
             menuBackgroundColor == other.menuBackgroundColor &&
             gridBorderColor == other.gridBorderColor &&
             borderColor == other.borderColor &&
@@ -668,6 +673,7 @@ class PlutoGridStyleConfig {
         dragIconColor,
         iconColor,
         disabledIconColor,
+        unselectedCheckColor,
         menuBackgroundColor,
         gridBorderColor,
         borderColor,
