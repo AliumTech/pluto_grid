@@ -257,7 +257,8 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
 
   Color _getDefaultRowColor() {
     if (stateManager.rowColorCallback == null) {
-      return widget.rowIdx % 2 == 0 ? _oddRowColor : _evenRowColor;
+      return widget.row.backgroundColor ??
+          (widget.rowIdx % 2 == 0 ? _oddRowColor : _evenRowColor);
     }
 
     return stateManager.rowColorCallback!(
