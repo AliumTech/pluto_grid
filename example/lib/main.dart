@@ -65,6 +65,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       title: 'Working time',
       field: 'working_time',
       type: PlutoColumnType.time(),
+      frozen: PlutoColumnFrozen.start,
     ),
     PlutoColumn(
       title: 'salary',
@@ -158,7 +159,29 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
           onChanged: (PlutoGridOnChangedEvent event) {
             print(event);
           },
-          configuration: const PlutoGridConfiguration(),
+          configuration: PlutoGridConfiguration(
+            columnSize: const PlutoGridColumnSizeConfig(
+              autoSizeMode: PlutoAutoSizeMode.scale,
+            ),
+            style: PlutoGridStyleConfig(
+              columnFilterHeight: 80,
+              rowColor: Colors.white,
+              onHoverRowColor: Colors.yellow,
+              evenRowColor: Colors.grey.withOpacity(0.09),
+              rowHeight: 52,
+              gridBorderRadius: BorderRadius.circular(8),
+              enableRowColorAnimation: false,
+              enableCellBorderHorizontal: true,
+              enableCellBorderVertical: true,
+              enableColumnBorderHorizontal: false,
+              enableColumnBorderVertical: false,
+              columnContextIcon: Icons.filter_list_rounded,
+              // borderColor: AppColors.outlineGrey,
+              borderColor: Colors.grey.withOpacity(0.09),
+              activatedColor: Colors.green,
+              activatedBorderColor: Colors.transparent,
+            ),
+          ),
         ),
       ),
     );
