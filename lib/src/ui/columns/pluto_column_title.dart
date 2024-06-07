@@ -416,9 +416,13 @@ class _ColumnWidget extends StatelessWidget {
 
 class CheckboxAllSelectionWidget extends PlutoStatefulWidget {
   final PlutoGridStateManager stateManager;
+  final PlutoColumn column;
 
-  const CheckboxAllSelectionWidget({required this.stateManager, Key? key})
-      : super(key: key);
+  const CheckboxAllSelectionWidget({
+    required this.stateManager,
+    required this.column,
+    Key? key,
+  }) : super(key: key);
 
   @override
   CheckboxAllSelectionWidgetState createState() =>
@@ -456,7 +460,11 @@ class CheckboxAllSelectionWidgetState
 
     if (_checked == null) changed = true;
 
-    stateManager.toggleAllRowChecked(changed);
+    stateManager.toggleAllRowChecked(
+      changed,
+      field: widget.column.field,
+      canSelect: widget.column.canSelect,
+    );
 
     if (stateManager.onRowChecked != null) {
       stateManager.onRowChecked!(
@@ -540,6 +548,7 @@ class _ColumnTextWidgetState extends PlutoStateWithChange<_ColumnTextWidget> {
             WidgetSpan(
               child: CheckboxAllSelectionWidget(
                 stateManager: widget.stateManager,
+                column: widget.column,
               ),
             ),
         ],

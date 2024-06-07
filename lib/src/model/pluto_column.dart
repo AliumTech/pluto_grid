@@ -15,10 +15,15 @@ typedef PlutoColumnFooterRenderer = Widget Function(
 /// whether the cell is editable cannot be changed during runtime,
 /// but if this callback is implemented,
 /// it can be determined whether the cell can be edited or not according to the state of the cell.
-typedef PlutoColumnCheckReadOnly = bool Function(
-  PlutoRow row,
-  PlutoCell cell,
-);
+typedef PlutoColumnCheckReadOnly = bool Function(PlutoRow row, PlutoCell cell);
+
+/// It dynamically determines whether the cells of the column are in the edit state.
+///
+/// Once the [enableRowChecked] value is set,
+/// whether the cell can be selected cannot be changed during runtime,
+/// but if this callback is implemented,
+/// it can be determined whether the cell can be selected or not according to the state of the cell.
+typedef PlutoColumnCanSelect = bool Function(PlutoRow row, PlutoCell cell);
 
 class PlutoColumn {
   /// A title to be displayed on the screen.
@@ -210,6 +215,7 @@ class PlutoColumn {
     required this.type,
     this.readOnly = false,
     PlutoColumnCheckReadOnly? checkReadOnly,
+    PlutoColumnCanSelect? canSelect,
     this.width = PlutoGridSettings.columnWidth,
     this.minWidth = PlutoGridSettings.minColumnWidth,
     this.titlePadding,
@@ -243,17 +249,22 @@ class PlutoColumn {
     this.enableEditingMode = true,
     this.hide = false,
   })  : _key = UniqueKey(),
-        _checkReadOnly = checkReadOnly;
+        _checkReadOnly = checkReadOnly,
+        _canSelect = canSelect;
 
   final Key _key;
 
   final PlutoColumnCheckReadOnly? _checkReadOnly;
+
+  final PlutoColumnCanSelect? _canSelect;
 
   Key get key => _key;
 
   bool get hasRenderer => renderer != null;
 
   bool get hasCheckReadOnly => _checkReadOnly != null;
+
+  bool get hasCanSelect => _canSelect != null;
 
   FocusNode? _filterFocusNode;
 
@@ -301,6 +312,10 @@ class PlutoColumn {
 
   bool checkReadOnly(PlutoRow row, PlutoCell cell) {
     return hasCheckReadOnly ? _checkReadOnly!(row, cell) : readOnly;
+  }
+
+  bool canSelect(PlutoRow row, PlutoCell cell) {
+    return hasCanSelect ? _canSelect!(row, cell) : enableRowChecked;
   }
 
   void setFilterFocusNode(FocusNode? node) {

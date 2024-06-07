@@ -177,7 +177,8 @@ class _PlutoDefaultCellState extends PlutoStateWithChange<PlutoDefaultCell> {
             color: style.dragIconColor,
           ),
         ),
-      if (widget.column.enableRowChecked)
+      if (widget.column.enableRowChecked &&
+          widget.column.canSelect(widget.row, widget.cell))
         CheckboxSelectionWidget(
           column: widget.column,
           row: widget.row,

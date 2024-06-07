@@ -95,6 +95,8 @@ abstract class IRowState {
 
   void toggleAllRowChecked(
     bool flag, {
+    required PlutoColumnCanSelect canSelect,
+    required String field,
     bool notify = true,
   });
 }
@@ -447,10 +449,14 @@ mixin RowState implements IPlutoGridState {
   @override
   void toggleAllRowChecked(
     bool? flag, {
+    required PlutoColumnCanSelect canSelect,
+    required String field,
     bool notify = true,
   }) {
     for (final row in iterateRowAndGroup) {
-      row.setChecked(flag == true);
+      if (row.cells[field] != null && canSelect(row, row.cells[field]!)) {
+        row.setChecked(flag == true);
+      }
     }
 
     notifyListeners(notify, toggleAllRowChecked.hashCode);
