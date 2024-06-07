@@ -454,8 +454,8 @@ mixin RowState implements IPlutoGridState {
     bool notify = true,
   }) {
     for (final row in iterateRowAndGroup) {
-      if (canSelect != null && field != null) {
-        if (canSelect(row, row.cells[field]!)) {
+      if (canSelect != null) {
+        if (canSelect(row, field != null ? row.cells[field]! : null)) {
           row.setChecked(flag == true);
         }
       } else {

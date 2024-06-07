@@ -23,7 +23,7 @@ typedef PlutoColumnCheckReadOnly = bool Function(PlutoRow row, PlutoCell cell);
 /// whether the cell can be selected cannot be changed during runtime,
 /// but if this callback is implemented,
 /// it can be determined whether the cell can be selected or not according to the state of the cell.
-typedef PlutoColumnCanSelect = bool Function(PlutoRow row, PlutoCell cell);
+typedef PlutoColumnCanSelect = bool Function(PlutoRow row, PlutoCell? cell);
 
 class PlutoColumn {
   /// A title to be displayed on the screen.
@@ -314,7 +314,7 @@ class PlutoColumn {
     return hasCheckReadOnly ? _checkReadOnly!(row, cell) : readOnly;
   }
 
-  bool canSelect(PlutoRow row, PlutoCell cell) {
+  bool canSelect(PlutoRow row, PlutoCell? cell) {
     return hasCanSelect ? _canSelect!(row, cell) : enableRowChecked;
   }
 

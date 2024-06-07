@@ -462,7 +462,6 @@ class CheckboxAllSelectionWidgetState
 
     stateManager.toggleAllRowChecked(
       changed,
-      field: widget.column.field,
       canSelect: widget.column.canSelect,
     );
 
