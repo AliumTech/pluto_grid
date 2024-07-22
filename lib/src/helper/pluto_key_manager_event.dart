@@ -95,7 +95,8 @@ class PlutoKeyManagerEvent {
   }
 
   bool get isCtrlPressed {
-    return HardwareKeyboard.instance.isControlPressed;
+    return HardwareKeyboard.instance.isMetaPressed ||
+        HardwareKeyboard.instance.isControlPressed;
   }
 
   bool get isAltPressed {
