@@ -178,6 +178,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
               columnContextIcon: Icons.filter_list_rounded,
               // borderColor: AppColors.outlineGrey,
               borderColor: Colors.grey.withOpacity(0.09),
+              borderColorBottom: Colors.grey.withOpacity(0.4),
               activatedColor: Colors.green,
               activatedBorderColor: Colors.transparent,
             ),

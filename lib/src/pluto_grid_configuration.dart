@@ -216,6 +216,7 @@ class PlutoGridStyleConfig {
     this.menuBackgroundColor = Colors.white,
     this.gridBorderColor = const Color(0xFFA1A5AE),
     this.borderColor = const Color(0xFFDDE2EB),
+    this.borderColorBottom = const Color(0xFFDDE2EB),
     this.activatedBorderColor = Colors.lightBlue,
     this.inactivatedBorderColor = const Color(0xFFC4C7CC),
     this.iconSize = 18,
@@ -277,6 +278,7 @@ class PlutoGridStyleConfig {
     this.menuBackgroundColor = const Color(0xFF414141),
     this.gridBorderColor = const Color(0xFF666666),
     this.borderColor = const Color(0xFF222222),
+    this.borderColorBottom = const Color(0xFF222222),
     this.activatedBorderColor = const Color(0xFFFFFFFF),
     this.inactivatedBorderColor = const Color(0xFF666666),
     this.iconSize = 18,
@@ -394,7 +396,11 @@ class PlutoGridStyleConfig {
   ///
   /// Border color is set
   /// for [PlutoColumn], [PlutoColumnGroup], [PlutoCell], [PlutoRow], etc.
+  /// Top Border
   final Color borderColor;
+
+  /// Bottom Border
+  final Color borderColorBottom;
 
   /// Border color set when widgets such as [PlutoRow] and [PlutoCell]
   /// receive focus or are currently selected.
@@ -503,6 +509,9 @@ class PlutoGridStyleConfig {
     Color? menuBackgroundColor,
     Color? gridBorderColor,
     Color? borderColor,
+    Color? borderColorBottom,
+    Color? borderColorLeft,
+    Color? borderColorRight,
     Color? activatedBorderColor,
     Color? inactivatedBorderColor,
     double? iconSize,
@@ -563,6 +572,7 @@ class PlutoGridStyleConfig {
         menuBackgroundColor: menuBackgroundColor ?? this.menuBackgroundColor,
         gridBorderColor: gridBorderColor ?? this.gridBorderColor,
         borderColor: borderColor ?? this.borderColor,
+        borderColorBottom: borderColorBottom ?? this.borderColorBottom,
         activatedBorderColor: activatedBorderColor ?? this.activatedBorderColor,
         inactivatedBorderColor:
             inactivatedBorderColor ?? this.inactivatedBorderColor,

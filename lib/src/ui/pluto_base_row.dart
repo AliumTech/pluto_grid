@@ -349,7 +349,7 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
             : stateManager.configuration.style.enableCellBorderHorizontal
                 ? BorderSide(
                     width: PlutoGridSettings.rowBorderWidth,
-                    color: stateManager.configuration.style.borderColor,
+                    color: stateManager.configuration.style.borderColorBottom,
                   )
                 : BorderSide.none,
       ),
