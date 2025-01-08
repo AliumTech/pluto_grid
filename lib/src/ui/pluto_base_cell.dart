@@ -122,6 +122,8 @@ class PlutoBaseCell extends StatelessWidget
         column: column,
         cellPadding: column.cellPadding ??
             stateManager.configuration.style.defaultCellPadding,
+        cellPaddingWhileEditing: column.cellPaddingWhileEditing ??
+            stateManager.configuration.style.defaultCellPadding,
         stateManager: stateManager,
         child: _Cell(
           stateManager: stateManager,
@@ -146,6 +148,8 @@ class _CellContainer extends PlutoStatefulWidget {
 
   final EdgeInsets cellPadding;
 
+  final EdgeInsets cellPaddingWhileEditing;
+
   final PlutoGridStateManager stateManager;
 
   final Widget child;
@@ -156,6 +160,7 @@ class _CellContainer extends PlutoStatefulWidget {
     required this.rowIdx,
     required this.column,
     required this.cellPadding,
+    required this.cellPaddingWhileEditing,
     required this.stateManager,
     required this.child,
   });
@@ -310,7 +315,9 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
     return DecoratedBox(
       decoration: _decoration,
       child: Padding(
-        padding: widget.cellPadding,
+        padding: stateManager.isEditing
+            ? widget.cellPaddingWhileEditing
+            : widget.cellPadding,
         child: widget.child,
       ),
     );
