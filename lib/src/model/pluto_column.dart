@@ -226,6 +226,7 @@ class PlutoColumn {
     this.filterPadding,
     this.titleSpan,
     this.cellPadding,
+    this.cellPaddingWhileEditing,
     this.textAlign = PlutoColumnTextAlign.start,
     this.titleTextAlign = PlutoColumnTextAlign.start,
     this.frozen = PlutoColumnFrozen.none,
