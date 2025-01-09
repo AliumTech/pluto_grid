@@ -315,9 +315,10 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
     return DecoratedBox(
       decoration: _decoration,
       child: Padding(
-        padding: stateManager.isEditing
-            ? widget.cellPaddingWhileEditing
-            : widget.cellPadding,
+        padding:
+            stateManager.isEditing && stateManager.isCurrentCell(widget.cell)
+                ? widget.cellPaddingWhileEditing
+                : widget.cellPadding,
         child: widget.child,
       ),
     );
