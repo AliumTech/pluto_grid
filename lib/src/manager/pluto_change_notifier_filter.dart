@@ -5,7 +5,7 @@ import '../ui/ui.dart';
 
 class PlutoChangeNotifierFilter<T> {
   PlutoChangeNotifierFilter(this._filter, [this._debugNotifierNames])
-      : _type = T;
+    : _type = T;
 
   static bool enabled = true;
 
@@ -123,6 +123,7 @@ abstract class PlutoChangeNotifierFilterResolver {
       /// row_group_state
       stateManager.setRowGroup.hashCode: 'setRowGroup',
       stateManager.toggleExpandedRowGroup.hashCode: 'toggleExpandedRowGroup',
+      stateManager.toggleExpandedRowGroup2.hashCode: 'toggleExpandedRowGroup2',
 
       /// row_state
       stateManager.setRowChecked.hashCode: 'setRowChecked',
@@ -237,6 +238,7 @@ class PlutoNotifierFilterResolverDefault
       stateManager.moveRowsByIndex.hashCode,
       stateManager.setRowGroup.hashCode,
       stateManager.toggleExpandedRowGroup.hashCode,
+      stateManager.toggleExpandedRowGroup2.hashCode,
       stateManager.notifyChangedShowFrozenColumn.hashCode,
       stateManager.setPage.hashCode,
       stateManager.setPageSize.hashCode,
@@ -244,7 +246,8 @@ class PlutoNotifierFilterResolverDefault
   }
 
   static Set<int> defaultAggregateColumnFooterFilter(
-      PlutoGridStateManager stateManager) {
+    PlutoGridStateManager stateManager,
+  ) {
     return {
       stateManager.toggleAllRowChecked.hashCode,
       stateManager.setRowChecked.hashCode,
@@ -263,6 +266,7 @@ class PlutoNotifierFilterResolverDefault
       stateManager.removeAllRows.hashCode,
       stateManager.setRowGroup.hashCode,
       stateManager.toggleExpandedRowGroup.hashCode,
+      stateManager.toggleExpandedRowGroup2.hashCode,
       stateManager.changeCellValue.hashCode,
       stateManager.pasteCellValue.hashCode,
     };
@@ -300,6 +304,7 @@ class PlutoNotifierFilterResolverDefault
       stateManager.removeAllRows.hashCode,
       stateManager.setRowGroup.hashCode,
       stateManager.toggleExpandedRowGroup.hashCode,
+      stateManager.toggleExpandedRowGroup2.hashCode,
     };
   }
 }
