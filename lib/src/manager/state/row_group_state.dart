@@ -124,6 +124,12 @@ abstract class IRowGroupState {
     bool notify = true,
   });
 
+  void toggleExpandedRowGroup2({
+    required PlutoRow rowGroup,
+    bool notify = true,
+    bool expand = true,
+  });
+
   @protected
   void setRowGroupFilter(FilteredListFilter<PlutoRow>? filter);
 
@@ -309,6 +315,64 @@ mixin RowGroupState implements IPlutoGridState {
     clearCurrentSelecting(notify: false);
 
     notifyListeners(notify, toggleExpandedRowGroup.hashCode);
+  }
+
+  @override
+  void toggleExpandedRowGroup2({
+    required PlutoRow rowGroup,
+    bool notify = true,
+    bool expand = true,
+  }) {
+    assert(enabledRowGroups);
+
+    if (!rowGroup.type.isGroup ||
+        rowGroup.type.group.children.originalList.isEmpty) {
+      return;
+    }
+    bool expanded = rowGroup.type.group.expanded;
+
+    if (expanded != expand) {
+      if (!expand) {
+        final Set<Key> removeKeys = {};
+
+        for (final child in _iterateRowAndGroup(rowGroup.type.group.children)) {
+          removeKeys.add(child.key);
+        }
+
+        refRows.removeWhereFromOriginal((e) => removeKeys.contains(e.key));
+      } else {
+        final Iterable<PlutoRow> children =
+            PlutoRowGroupHelper.iterateWithFilter(
+          rowGroup.type.group.children,
+          filter: (r) => true,
+          childrenFilter: (r) => r.type.isGroup && r.type.group.expanded
+              ? r.type.group.children.iterator
+              : null,
+        );
+
+        final idx = refRows.indexOf(rowGroup);
+
+        refRows.insertAll(idx + 1, children);
+      }
+    }
+
+    rowGroup.type.group.setExpanded(expand);
+
+    if (isPaginated) {
+      resetPage(resetCurrentState: false, notify: false);
+    }
+
+    if (rowGroupDelegate?.onToggled != null) {
+      rowGroupDelegate!.onToggled!(
+        row: rowGroup,
+        expanded: rowGroup.type.group.expanded,
+      );
+    }
+
+    updateCurrentCellPosition(notify: false);
+
+    clearCurrentSelecting(notify: false);
+    notifyListeners(notify, toggleExpandedRowGroup2.hashCode);
   }
 
   @override
