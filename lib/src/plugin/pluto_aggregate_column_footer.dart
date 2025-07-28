@@ -299,13 +299,15 @@ class PlutoAggregateColumnFooterState
         break;
     }
   }
+  
+  String get value => _aggregatedValue == null ? '':"$_aggregatedValue";
+  
+  String get formattedValue => _aggregatedValue == null ? '' : _numberFormat.format(_aggregatedValue);
+  
 
   @override
   Widget build(BuildContext context) {
     final hasTitleSpan = widget.titleSpanBuilder != null;
-
-    final formattedValue =
-        _aggregatedValue == null ? '' : _numberFormat.format(_aggregatedValue);
 
     final text = hasTitleSpan ? null : formattedValue;
 
