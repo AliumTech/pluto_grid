@@ -15,9 +15,9 @@ dependencies:
   pluto_grid:
     path: ../..
   csv: ^6.0.0
-  pdf: ^3.11.0
-  printing: ^5.13.1
-  file_saver: ^0.2.13
+  pdf: ^3.11.3
+  printing: ^5.14.2
+  file_saver: ^0.3.1
 
 
 dev_dependencies:
