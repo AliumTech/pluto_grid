@@ -78,9 +78,12 @@ class PlutoLazyPagination extends StatefulWidget {
     this.fetchWithFiltering = true,
     this.pageSizeToMove,
     required this.fetch,
+    this.onPostFetch,
     required this.stateManager,
     super.key,
   });
+
+  final void Function()? onPostFetch;
 
   /// Set the first page.
   final int initialPage;
@@ -194,6 +197,8 @@ class _PlutoLazyPaginationState extends State<PlutoLazyPagination> {
       });
 
       stateManager.setShowLoading(false);
+
+      widget.onPostFetch?.call();
     });
   }
 
@@ -356,9 +361,10 @@ class _PaginationWidgetState extends State<_PaginationWidget> {
 
   TextStyle _getNumberTextStyle(bool isCurrentIndex) {
     return TextStyle(
-      fontSize: isCurrentIndex ? widget.iconSize : null,
-      color: isCurrentIndex ? widget.activatedColor : widget.iconColor,
-    );
+        fontSize: isCurrentIndex ? widget.iconSize : null,
+        color: isCurrentIndex ? widget.activatedColor : widget.disabledIconColor
+        //widget.iconColor,
+        );
   }
 
   Widget _makeNumberButton(int index) {
@@ -380,6 +386,7 @@ class _PaginationWidgetState extends State<_PaginationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var color = widget.disabledIconColor;
     return LayoutBuilder(
       builder: (_, size) {
         _maxWidth = size.maxWidth;
@@ -396,8 +403,10 @@ class _PaginationWidgetState extends State<_PaginationWidget> {
                   IconButton(
                     onPressed: _isFirstPage ? null : _firstPage,
                     icon: const Icon(Icons.first_page),
-                    color: widget.iconColor,
-                    disabledColor: widget.disabledIconColor,
+                    color: color,
+                    disabledColor: color,
+                    //  color: widget.iconColor,
+                    //   disabledColor: widget.disabledIconColor,
                     splashRadius: _iconSplashRadius,
                     mouseCursor: _isFirstPage
                         ? SystemMouseCursors.basic
@@ -406,8 +415,8 @@ class _PaginationWidgetState extends State<_PaginationWidget> {
                   IconButton(
                     onPressed: _isFirstPage ? null : _beforePage,
                     icon: const Icon(Icons.navigate_before),
-                    color: widget.iconColor,
-                    disabledColor: widget.disabledIconColor,
+                    color: color,
+                    disabledColor: color,
                     splashRadius: _iconSplashRadius,
                     mouseCursor: _isFirstPage
                         ? SystemMouseCursors.basic
@@ -417,8 +426,8 @@ class _PaginationWidgetState extends State<_PaginationWidget> {
                   IconButton(
                     onPressed: _isLastPage ? null : _nextPage,
                     icon: const Icon(Icons.navigate_next),
-                    color: widget.iconColor,
-                    disabledColor: widget.disabledIconColor,
+                    color: color,
+                    disabledColor: color,
                     splashRadius: _iconSplashRadius,
                     mouseCursor: _isLastPage
                         ? SystemMouseCursors.basic
@@ -427,8 +436,8 @@ class _PaginationWidgetState extends State<_PaginationWidget> {
                   IconButton(
                     onPressed: _isLastPage ? null : _lastPage,
                     icon: const Icon(Icons.last_page),
-                    color: widget.iconColor,
-                    disabledColor: widget.disabledIconColor,
+                    color: color,
+                    disabledColor: color,
                     splashRadius: _iconSplashRadius,
                     mouseCursor: _isLastPage
                         ? SystemMouseCursors.basic
