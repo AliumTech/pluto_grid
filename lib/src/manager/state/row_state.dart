@@ -106,23 +106,24 @@ mixin RowState implements IPlutoGridState {
   List<PlutoRow> get rows => [...refRows];
 
   @override
-  List<PlutoRow> get checkedRows => refRows.where((row) => row.checked!).toList(
-        growable: false,
-      );
+  List<PlutoRow> get checkedRows =>
+      refRows.where((row) => row.checked ?? false).toList(
+            growable: false,
+          );
 
   @override
   List<PlutoRow> get unCheckedRows =>
-      refRows.where((row) => !row.checked!).toList(
+      refRows.where((row) => !(row.checked ?? false)).toList(
             growable: false,
           );
 
   @override
   bool get hasCheckedRow =>
-      refRows.firstWhereOrNull((element) => element.checked!) != null;
+      refRows.firstWhereOrNull((element) => element.checked == true) != null;
 
   @override
   bool get hasUnCheckedRow =>
-      refRows.firstWhereOrNull((element) => !element.checked!) != null;
+      refRows.firstWhereOrNull((element) => element.checked != true) != null;
 
   @override
   bool? get tristateCheckedRow {
